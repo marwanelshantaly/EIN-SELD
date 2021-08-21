@@ -152,7 +152,9 @@ class Preprocessor:
                 batch_x = batch_x.cuda(non_blocking=True)
             batch_y = af_extractor(batch_x).transpose(0, 1)
             C, _, _, F = batch_y.shape
+            
             features = batch_y.reshape(C, -1, F)
+            print(C,"-----",F,"--------",features.shape[1])
             a += features.shape[1]
 #             else:
 #                 features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
