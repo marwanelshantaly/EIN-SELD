@@ -140,7 +140,7 @@ class Preprocessor:
         )
         af_extractor = get_afextractor(self.cfg, cuda_enabled).eval()
         iterator = tqdm(enumerate(data_generator), total=len(data_generator), unit='it')
-        features = np.zeros((7, 1443600, 256))
+        features = np.ones((7, 1443600, 256))
         begin_time = timer()
         a = 0
         for it, batch_sample in iterator:
@@ -151,11 +151,11 @@ class Preprocessor:
             if cuda_enabled:
                 batch_x = batch_x.cuda(non_blocking=True)
             batch_y = af_extractor(batch_x).transpose(0, 1)
-            C, _, _, F = batch_y.shape
+            C, s1, s2, F = batch_y.shape
             
-            temp = batch_y.reshape(C, -1, F)
-            features[:, a : a + temp.shape[1], :] = temp.cpu().numpy()
-            a += temp.shape[1]
+            temp = 
+            features[:, a : a + s1*s2, :] = batch_y.reshape(C, -1, F).numpy()
+            a +=  s1*s2
 #             else:
 #                 features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
 #             features.append(batch_y.reshape(C, -1, F).cpu().numpy())
