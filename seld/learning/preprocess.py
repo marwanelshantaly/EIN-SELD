@@ -154,7 +154,7 @@ class Preprocessor:
             C, _, _, F = batch_y.shape
             
             temp = batch_y.reshape(C, -1, F)
-            features[:, a : a + temp.shape[1] -1, :] = temp.cpu().numpy()
+            features[:, a : a + temp.shape[1], :] = temp.cpu().numpy()
             a += temp.shape[1]
 #             else:
 #                 features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
