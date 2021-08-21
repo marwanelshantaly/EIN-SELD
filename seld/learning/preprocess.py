@@ -151,12 +151,15 @@ class Preprocessor:
                 batch_x = batch_x.cuda(non_blocking=True)
             batch_y = af_extractor(batch_x).transpose(0, 1)
             C, _, _, F = batch_y.shape
-            if it < 2:
-                print(batch_y.shape)
-            features.append(batch_y.reshape(C, -1, F).cpu().numpy())
+            if it == 0:
+                features = batch_y.reshape(C, -1, F)
+            else:
+                features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
+            # features.append(batch_y.reshape(C, -1, F).cpu().numpy())
         
         iterator.close()
-        features = np.concatenate(features, axis=1)
+        features = features.cpu().numpy()
+        # features = np.concatenate(features, axis=1)
         mean = []
         std = []
 
