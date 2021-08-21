@@ -153,7 +153,7 @@ class Preprocessor:
             batch_y = af_extractor(batch_x).transpose(0, 1)
             C, s1, s2, F = batch_y.shape
             
-            features[:, a : a + s1*s2, :] = batch_y.reshape(C, -1, F).numpy()
+#             features[:, a : a + s1*s2, :] = batch_y.reshape(C, -1, F).numpy()
             a +=  s1*s2
 #             else:
 #                 features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
