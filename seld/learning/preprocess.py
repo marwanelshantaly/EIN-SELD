@@ -153,9 +153,10 @@ class Preprocessor:
             C, _, _, F = batch_y.shape
             if it == 0:
                 features = batch_y.reshape(C, -1, F)
-            else:
-                features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
-            # features.append(batch_y.reshape(C, -1, F).cpu().numpy())
+                print(features.shape)
+#             else:
+#                 features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
+#             features.append(batch_y.reshape(C, -1, F).cpu().numpy())
         
         iterator.close()
         features = features.cpu().numpy()
