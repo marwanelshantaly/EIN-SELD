@@ -155,12 +155,12 @@ class Preprocessor:
             C, s1, s2, F = batch_y.shape
             
             
-            if it > 0:
-                print(features[:, a - s1*s2 : a , :])
-                print("")
-                print("---------------------------- iteration {0} --------------------------".format(it))
+#             if it > 0:
+#                 print(features[:, a - s1*s2 : a , :])
+#                 print("")
+#                 print("---------------------------- iteration {0} --------------------------".format(it))
             features[:, a : a + s1*s2, :] = batch_y.reshape(C, -1, F).cpu()
-            print(features[:, a : a + s1*s2, :])
+#             print(features[:, a : a + s1*s2, :])
             a +=  s1*s2
 #             else:
 #                 features = torch.cat((features, batch_y.reshape(C, -1, F)), dim = 1)
