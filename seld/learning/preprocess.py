@@ -153,11 +153,12 @@ class Preprocessor:
                 batch_x = batch_x.cuda(non_blocking=True)
             batch_y = af_extractor(batch_x).transpose(0, 1)
             C, s1, s2, F = batch_y.shape
-            print("")
-            print("---------------------------- iteration {0} --------------------------".format(it))
+            
             
             if it > 0:
                 print(features[:, a - s1*s2 : a , :])
+                print("")
+                print("---------------------------- iteration {0} --------------------------".format(it))
             features[:, a : a + s1*s2, :] = batch_y.reshape(C, -1, F).cpu()
             print(features[:, a : a + s1*s2, :])
             a +=  s1*s2
