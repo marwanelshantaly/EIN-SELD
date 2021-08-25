@@ -162,7 +162,9 @@ class Preprocessor:
         print("the dimension = {0}".format(a))
         iterator.close()
         features = features.cpu().numpy()
+        print(features.max())
         print(features)
+        
 #         features = features.cpu().numpy()
         # features = np.concatenate(features, axis=1)
         mean = []
