@@ -45,11 +45,11 @@ class Inferer(BaseInferer):
             with torch.no_grad():
                 self.af_extractor.eval()
                 self.model.eval()
-                print("Shape before feature extraction: {0} ".format(batch_x.shape))
+#                 print("Shape before feature extraction: {0} ".format(batch_x.shape))
                 batch_x = self.af_extractor(batch_x)
                 batch_x = (batch_x - self.mean) / self.std
                 
-                print("Shape after feature extraction: {0} ".format(batch_x.shape))
+#                 print("Shape after feature extraction: {0} ".format(batch_x.shape))
                 
                 pred = self.model(batch_x)
                 pred['sed'] = torch.sigmoid(pred['sed'])
